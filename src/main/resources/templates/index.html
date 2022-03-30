@@ -9,11 +9,38 @@
     <!-- TODO User should be able to submit data -->
     <section class="content">
             <h1>🤑 Free moneyy no scam - very easy</h1>
-            <form method="POST" action="/test">
+            <form method="POST" action="/test" id="form">
+                <div id="errordiv">
+
+                </div>
                 <label for="email">🥳 Please enter your e-mail</label>
                 <input id="email" type="text" name="email"/>
                 <input type="submit">
             </form>
     </section>
 </body>
+<script>
+    const form=document.getElementById("form");
+    const mailinput=document.getElementById("email").value;
+    form.onsubmit=()=>{
+        console.log(mailinput)
+        if (mailinput.contains("@")) {
+            alert("form has been submitted successfully")
+        }
+        else{
+            alert("Not a valid mail")
+        }
+    }
+    const errordiv= document.getElementById("errordiv")
+    const params = new URLSearchParams(window.location.search)
+    const error = params.get("error")
+    console.log(error)
+
+    if (error.length>0){
+        const errormessage= document.createElement("p")
+        errormessage.innerText=error;
+        errormessage.style="color:red"
+        errordiv.appendChild(errormessage)
+    }
+</script>
 </html>
